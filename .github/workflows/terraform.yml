@@ -33,33 +33,22 @@ jobs:
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          tf_action_version: "1.1.7"
-          tf_actions_working_dir: "./terraform"
+     
 
       # Initialize a new or existing Terraform working directory
       - name: Terraform Init
         run: terraform init
-        with:
-          tf_action_version: "1.1.7"
-          tf_actions_subcommand: 'init'
-          tf_actions_working_dir: "./terraform"
+        working-directory: "./terraform"
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
         run: terraform fmt -check
-        with:
-          tf_action_version: "1.1.7"
-          tf_actions_subcommand: 'fmt'
-          tf_actions_working_dir: "./terraform"
-
+        working-directory: "./terraform"
+        
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform plan 
-        with:
-          tf_action_version: "1.1.7"
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: "./terraform"
+        working-directory: "./terraform"
 
       # On push to "master", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud".
@@ -68,4 +57,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-        working-directory: "./terraform"
+        

@@ -68,7 +68,4 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-        with:
-          tf_action_version: "1.1.7"
-          tf_actions_subcommand: 'apply'
-          tf_actions_working_dir: "./terraform"
+        working-directory: "./terraform"

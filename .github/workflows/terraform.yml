@@ -40,8 +40,8 @@ jobs:
         run: 
             echo "terraform { \
               backend \"azurerm\" { \
-                storage_account_name = \"<storage_account_name>\" \
-                container_name       = \"<container_name>\" \
+                storage_account_name = \"terraformyukta\" \
+                container_name       = \"tfstate\" \
                 key                  = \"terraform.tfstate\" \
                 tenant_id            = \"$ARM_TENANT_ID\" \
                 client_id            = \"$ARM_CLIENT_ID\" \

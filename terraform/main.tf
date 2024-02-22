@@ -16,7 +16,7 @@ module "vnet" {
   subnets              = []
 
   tags = {
-    environment = "dev"
+    environment = "prod"
     project     = "my_project"
   }
 }

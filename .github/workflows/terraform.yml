@@ -13,12 +13,11 @@ jobs:
   terraform:
     name: 'Terraform'
     env: 
-      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_DIRECTORY_ID }}
-      TERRAFORM_CLI_PATH: /home/runner/work/_temp/cb60b066-25e3-4b27-93b2-ad897b85485d
-    runs-on: ubuntu-latest
+      echo "ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+      echo "ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}" >> $GITHUB_ENV
+      echo "ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}" >> $GITHUB_ENV
+      echo "ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}" >> $GITHUB_ENV
+      
     environment: dev
 
     # Use the Bash shell regardless of the GitHub Actions runner

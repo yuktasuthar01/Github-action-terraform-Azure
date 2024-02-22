@@ -36,6 +36,18 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
+      - name: Configure Terraform backend
+        run: 
+            echo "terraform { \
+              backend \"azurerm\" { \
+                storage_account_name = \"<storage_account_name>\" \
+                container_name       = \"<container_name>\" \
+                key                  = \"terraform.tfstate\" \
+                tenant_id            = \"$ARM_TENANT_ID\" \
+                client_id            = \"$ARM_CLIENT_ID\" \
+                client_secret        = \"$ARM_CLIENT_SECRET\" \
+              } \
+            }" > backend.tf
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
